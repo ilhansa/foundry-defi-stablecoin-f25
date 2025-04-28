@@ -7,7 +7,6 @@ import {DSCEngine} from "../src/DSCEngine.sol";
 import {HelperConfig} from "./HelperConfig.s.sol";
 
 contract DeployDsc is Script {
-
     address[] public tokenAddresses;
     address[] public priceFeedAddreses;
 
@@ -22,7 +21,7 @@ contract DeployDsc is Script {
         vm.startBroadcast(deployerKey);
         DecentralizedStableCoin dsc = new DecentralizedStableCoin();
         DSCEngine engine = new DSCEngine(tokenAddresses, priceFeedAddreses, address(dsc));
-        
+
         dsc.transferOwnership(address(engine));
         vm.stopBroadcast();
         return (dsc, engine, config);
